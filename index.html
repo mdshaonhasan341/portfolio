@@ -778,7 +778,7 @@
         <div class="col-lg-6">
           <h3 class="st-contact-title">Just say Hello</h3>
           <div id="st-alert"></div>
-          <form name="submit-to-google-sheet" class="st-contact-form" id="contact-form">
+          <form name="submit-to-google-sheet" class="st-contact-form">
             <div class="st-form-field">
               <input type="text" id="name" name="Name" placeholder="Your Name" required>
             </div>
@@ -963,22 +963,31 @@
 
 <!--Message Collect-->
 <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbzxswG0Y3y_1wB43ZSn3wWZsfdViKZRKT1-aB_w4LdZQ0GA60BDAXIO-p-vZbUsp67R/exec'
-  const form = document.forms['submit-to-google-sheet']
-  const msgss = document.getElementById("msgss")
+  document.addEventListener("DOMContentLoaded", function () {
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzxswG0Y3y_1wB43ZSn3wWZsfdViKZRKT1-aB_w4LdZQ0GA60BDAXIO-p-vZbUsp67R/exec';
+    const form = document.forms['submit-to-google-sheet'];
+    const msgss = document.getElementById("msgss");
 
-  form.addEventListener('submit', e => {
-    e.preventDefault()
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => {
-        msgss.innerHTML = "Message send successfully"
-        setTimeout(function(){
-          msgss.innerHTML = ""
-        },5000)
-        form.reset()
-      })
-      .catch(error => console.error('Error!', error.message))
-  })
+    if (form && msgss) {
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+          .then(response => {
+            msgss.innerHTML = "✅ Message sent successfully!";
+            setTimeout(() => {
+              msgss.innerHTML = "";
+            }, 5000);
+            form.reset();
+          })
+          .catch(error => {
+            msgss.innerHTML = "❌ Failed to send message.";
+            console.error('Error!', error.message);
+          });
+      });
+    } else {
+      console.error("Form or message container not found.");
+    }
+  });
 </script>
 
 
