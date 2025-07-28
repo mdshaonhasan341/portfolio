@@ -3163,7 +3163,12 @@ canvas {
       border: 2px solid #fec544;
     }
 
-    .project-item img { width: 100%; height: auto; display: block; }
+    .project-item img {
+      width: 560px;
+      height: 280px;
+      display: block;
+      margin-left: 0px;
+    }
 
     .project-name  {
       position: absolute;
@@ -3172,7 +3177,7 @@ canvas {
       right: 0;
       background: #fec544;
       color: #2f2f2f;
-      padding: 10px;
+      padding: 0px !important;
       opacity: 0;
       transition: opacity 0.5s;
       height: 100%;
@@ -3236,12 +3241,15 @@ canvas {
     .modal-media {
       margin-top: 10px;
       display: flex;
-      width: 50%;
-      flex-direction: row;
-      column-gap: 25px;
+      flex-wrap: wrap;
+      width: 100%;
+      gap: 30px;
     }
-    .modal-media img, .modal-media video {
-      width: 100%; border-radius: 5px;
+
+    .modal-media img {
+      width: calc(50% - 10px);
+      object-fit: cover;
+      border-radius: 8px;
     }
     .close-btn {
       margin-top: 20px;
@@ -3270,6 +3278,12 @@ canvas {
         flex-wrap: wrap;
         justify-content: center;
       }
+      .project-item img {
+        width: 560px;
+        height: 240px;
+        display: block;
+        margin-left: 0px;
+      }
 
       .tabs button {
         flex: 1 1 auto;
@@ -3295,9 +3309,9 @@ canvas {
         margin-top: 10px;
         display: flex;
         width: 100%;
-        flex-direction: column;
-        gap: 10px;
-        border-radius: 20px;
+        flex-direction: row;
+        gap: 30px;
+        border-radius: 0;
       }
     }
 
